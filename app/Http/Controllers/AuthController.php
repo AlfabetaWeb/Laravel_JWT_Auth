@@ -32,7 +32,7 @@ class AuthController extends Controller
 
         return response()->json(compact('user', 'token'), 201);
     }
-//esta es la función para el login
+    //esta es la función para el login
     public function login(Request $request)
     {
         $input = $request->only('email', 'password'); //para que solo recupere estos dos datos, aunque haya más info guardada
@@ -49,5 +49,10 @@ class AuthController extends Controller
             'success' => true,
             'token' => $jwt_token,
         ]);
+    }
+
+    public function me()
+    {
+        return response()->json(auth()->user());;
     }
 }
